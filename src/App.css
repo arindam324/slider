@@ -21,7 +21,11 @@
     display: flex;
     user-select: none;
     width: 1200px;
+    cursor: pointer;
+}
 
+.marquee:hover .groupware {
+    animation-duration: 20s;
 }
 
 .groupware {
