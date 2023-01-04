@@ -1,0 +1,54 @@
+.main {
+    width: 100vw;
+    min-height: 100vh;
+    background: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.marquee {
+    overflow: hidden;
+    display: flex;
+    user-select: none;
+    width: 1200px;
+
+}
+
+.groupware {
+    display: flex;
+    white-space: nowrap;
+    align-items: center;
+    justify-content: space-around;
+    flex-shrink: 0;
+    animation: move 10s linear infinite;
+}
+
+.h-8 {
+    height:32px;
+}
+
+.box {
+    border: 1px solid #f9f9f9;
+    padding: 0.4rem 1.2rem;
+    border-radius: 1.2rem;
+    margin: 0 1.2rem;
+}
+
+@keyframes move {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
