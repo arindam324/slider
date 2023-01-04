@@ -25,8 +25,9 @@
 }
 
 .marquee:hover .groupware {
-    animation-duration: 20s;
+
 }
+
 
 .groupware {
     display: flex;
@@ -34,11 +35,12 @@
     align-items: center;
     justify-content: space-around;
     flex-shrink: 0;
-    animation: move 10s linear infinite;
+    will-change: transform;
 }
 
+
 .h-8 {
-    height:32px;
+    height: 32px;
 }
 
 .box {

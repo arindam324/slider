@@ -1,4 +1,6 @@
+import {motion, useTransform} from 'framer-motion'
 import './App.css'
+import {useState} from "react";
 
 const Items = [
     {
@@ -27,13 +29,43 @@ const Items = [
     },
 ];
 
+
 const App = () => {
+
+    const [hovered, setHovered] = useState<boolean>(false)
+
+    console.log(hovered)
+
+    const marqueeVariants = {
+        animate: {
+            x: ["0%", "-100%"],
+            transition: {
+                x: {
+                    repeat: Infinity,
+                    repeatType: "loop",
+                    duration: 10,
+                    ease: "linear",
+                },
+            },
+        },
+        slowAnimate:{
+            x: ["0%", "-100%"],
+            transition: {
+                x: {
+                    repeat: Infinity,
+                    repeatType: "loop",
+                    duration: 20,
+                    ease: "linear",
+                },
+            },
+        }
+    };
+
     return (
         <div className="main">
             <div className="wrapper">
-                <div className="marquee">
-
-                    <div className="groupware">
+                <div onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className="marquee">
+                    <motion.div variants={marqueeVariants} animate={ hovered ? "slowAnimate" : "animate"} className="groupware">
                         {Items.map((item) => (
                             <>
                                 <img
@@ -49,8 +81,8 @@ const App = () => {
                             </>
 
                         ))}
-                    </div>
-                    <div className="groupware">
+                    </motion.div>
+                    <motion.div variants={marqueeVariants} animate={ hovered ? "slowAnimate" : "animate"} className="groupware">
                         {Items.map((item) => (
                             <>
                                 <img
@@ -65,7 +97,7 @@ const App = () => {
                                 </div>
                             </>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </div>
