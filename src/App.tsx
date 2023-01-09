@@ -1,6 +1,6 @@
-import {motion, useTransform} from 'framer-motion'
+import {motion, useCycle} from 'framer-motion'
 import './App.css'
-import {useState} from "react";
+
 
 const Items = [
     {
@@ -32,9 +32,8 @@ const Items = [
 
 const App = () => {
 
-    const [hovered, setHovered] = useState<boolean>(false)
 
-    console.log(hovered)
+    const [animation, cycleAnimation] = useCycle("animate", "animateSlow")
 
     const marqueeVariants = {
         animate: {
@@ -48,26 +47,27 @@ const App = () => {
                 },
             },
         },
-        slowAnimate:{
+        animateSlow: {
             x: ["0%", "-100%"],
             transition: {
                 x: {
                     repeat: Infinity,
                     repeatType: "loop",
-                    duration: 20,
+                    duration: 15,
                     ease: "linear",
                 },
             },
-        }
+        },
     };
 
     return (
         <div className="main">
             <div className="wrapper">
-                <div onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className="marquee">
-                    <motion.div variants={marqueeVariants} animate={ hovered ? "slowAnimate" : "animate"} className="groupware">
+                <div onMouseEnter={() => cycleAnimation()} onMouseLeave={() => cycleAnimation()} className="marquee">
+                    <motion.div
+                        variants={marqueeVariants} animate={animation} className="groupware">
                         {Items.map((item) => (
-                            <>
+                            <div className={"item"} key={item.id}>
                                 <img
                                     alt={""}
                                     className={"h-8"}
@@ -78,13 +78,14 @@ const App = () => {
                                 <div className="box" key={item.id}>
                                     {item.name}
                                 </div>
-                            </>
+                            </div>
 
                         ))}
                     </motion.div>
-                    <motion.div variants={marqueeVariants} animate={ hovered ? "slowAnimate" : "animate"} className="groupware">
+                    <motion.div variants={marqueeVariants} animate={animation}
+                                className="groupware">
                         {Items.map((item) => (
-                            <>
+                            <div className={"item"} key={item.id}>
                                 <img
                                     alt={""}
                                     className={"h-8"}
@@ -95,7 +96,7 @@ const App = () => {
                                 <div className="box" key={item.id}>
                                     {item.name}
                                 </div>
-                            </>
+                            </div>
                         ))}
                     </motion.div>
                 </div>

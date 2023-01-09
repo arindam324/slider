@@ -24,8 +24,9 @@
     cursor: pointer;
 }
 
-.marquee:hover .groupware {
-
+.item {
+    display: flex;
+    align-items: center;
 }
 
 
